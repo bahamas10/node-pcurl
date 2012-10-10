@@ -1,0 +1,30 @@
+{
+  "name": "pcurl",
+  "description": "Concurrently curl a list of hosts and print the results",
+  "author": "Dave Eddy <dave@daveeddy.com> (http://www.daveeddy.com)",
+  "version": "0.0.0",
+  "repository": {
+    "url": "https://github.com/bahamas10/node-pcurl.git",
+    "type": "git"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "request": "~2.11.4",
+    "yatf": "~1.0.3"
+  },
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "preferGlobal": true,
+  "bin": {
+    "pcurl": "./bin/pcurl.js"
+  },
+  "engines": {
+    "node": "*"
+  },
+  "keywords": [
+    "curl",
+    "pcurl",
+    "concurrent",
+    "parallel"
+  ]
+}
