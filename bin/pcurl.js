@@ -4,10 +4,11 @@
  */
 
 var yatf = require('yatf');
-var http = require('http');
 var request = require('request');
+
 var urls = process.argv.slice(2);
 var timeout = 10 * 1000;
+
 var headers = ['URL', 'CODE', 'BODY'];
 var data = [];
 
@@ -22,21 +23,24 @@ function process_urls(urls) {
       var ret = [];
       ret.push(url);
 
-      // Check for errors with the request
+      // check for errors with the request
       if (err) {
         ret.push('');
         ret.push(err.message.red);
-        return data.push(ret);
+        data.push(ret);
+        return;
       }
 
-      // Response code
+      // response code
       if (res.statusCode === 200)
         ret.push(('' + res.statusCode).green);
       else
         ret.push(('' + res.statusCode).red);
 
-      // Body
-      ret.push(body && body.trim() || '');
+      // body
+      body = body || '';
+      body = body.split('\n')[0];
+      ret.push(body);
 
       data.push(ret);
     });
@@ -48,7 +52,8 @@ process.on('exit', function() {
   yatf(headers, data.sort(), {underlineHeaders: true});
 });
 
-if (urls.length) return process_urls(urls);
+if (urls.length)
+  return process_urls(urls);
 
 // if we are here, no URLs were given, wait for stdin
 var body = '';
